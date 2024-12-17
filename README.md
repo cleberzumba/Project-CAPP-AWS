@@ -24,4 +24,27 @@ The pipeline was developed using AWS managed services, ensuring a serverless and
 
 ## API
 
-This project uses data from the Open-Meteo [site](https://open-meteo.com/) API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for a specific location over a defined period.
+This project uses data from the Open-Meteo [website](https://open-meteo.com/) API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for Berlin, Germany, for the period June to November 2024.
+
+### Fields Queryed in the URL:
+
+The URL requested the following fields:
+
+  - daily = temperature_2m_max,temperature_2m_min
+      - temperature_2m_max: Daily maximum temperature.
+      - temperature_2m_min: Daily minimum temperature.
+
+### Campos Retornados pela API
+
+A API retornou os dados no formato JSON, com os seguintes campos:
+
+  - `latitude` (float): Latitude of the requested location (52.52).
+  - `longitude` (float): Longitude of the requested location (13.41).
+  - `generationtime_ms` (float): Time in milliseconds to generate the response.
+  - `timezone` (string): Configured time zone (America/Los_Angeles).
+  - `timezone_abbreviation` (string): Time zone abbreviation (e.g.: PDT).
+  - `utc_offset_seconds` (integer): Offset in seconds relative to UTC time (-25200).
+  - `daily.time` (array<string>): List of dates in ISO 8601 format (YYYY-MM-DD).
+  - `daily.temperature_2m_max` (array<float>): List of daily maximum temperatures (in Fahrenheit, °F).
+  - `daily.temperature_2m_min` (array<float>): List of daily minimum temperatures (in Fahrenheit, °F).
+  - `daily_units` (object): Defines the unit of the returned variables (°F for temperatures).
