@@ -36,7 +36,7 @@ The URL requested the following fields:
 
 ## Extraction
 
-Data extraction in a serverless environment is relatively straightforward. We need the following components:
+![imagem](images/1-event-bridge.jpg)
 
 Data extraction in a serverless environment is relatively straightforward. We need the following components:
 
