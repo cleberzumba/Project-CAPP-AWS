@@ -3,7 +3,8 @@ import boto3
 import urllib3
 import datetime
 
-FIREHOSE_NAME = 'PUT-S3-QD2mK'
+## Firehose name need to be filled in.
+FIREHOSE_NAME = <<firehose name>>
 
 def lambda_handler(event, context):
     http = urllib3.PoolManager()
