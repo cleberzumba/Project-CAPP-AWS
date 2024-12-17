@@ -30,24 +30,9 @@ This project uses data from the Open-Meteo [website](https://open-meteo.com/) AP
 
 The URL requested the following fields:
 
-  - daily = temperature_2m_max,temperature_2m_min
-      - temperature_2m_max: Daily maximum temperature.
-      - temperature_2m_min: Daily minimum temperature.
-
-### Campos Retornados pela API
-
-A API retornou os dados no formato JSON, com os seguintes campos:
-
-  - `latitude` (float): Latitude of the requested location (52.52).
-  - `longitude` (float): Longitude of the requested location (13.41).
-  - `generationtime_ms` (float): Time in milliseconds to generate the response.
-  - `timezone` (string): Configured time zone (America/Los_Angeles).
-  - `timezone_abbreviation` (string): Time zone abbreviation (e.g.: PDT).
-  - `utc_offset_seconds` (integer): Offset in seconds relative to UTC time (-25200).
-  - `daily.time` (array<string>): List of dates in ISO 8601 format (YYYY-MM-DD).
-  - `daily.temperature_2m_max` (array<float>): List of daily maximum temperatures (in Fahrenheit, °F).
-  - `daily.temperature_2m_min` (array<float>): List of daily minimum temperatures (in Fahrenheit, °F).
-  - `daily_units` (object): Defines the unit of the returned variables (°F for temperatures).
+  - `daily` = temperature_2m_max,temperature_2m_min
+      - `temperature_2m_max`: Daily maximum temperature.
+      - `temperature_2m_min`: Daily minimum temperature.
 
 ## Extraction
 
@@ -101,4 +86,21 @@ After quality check, the data is promoted to a Production S3 bucket. A new AWS G
 ![imagem](images/5-workflow-orchestration.jpg)
 
 ![imagem](images/6-workflow-run-succeeded.jpg)
+
+After the workflow, we end up with a similar data structure as before with another enhancement.
+
+  - `latitude` (float): Latitude of the requested location (52.52).
+  - `longitude` (float): Longitude of the requested location (13.41).
+  - `generationtime_ms` (float): Time in milliseconds to generate the response.
+  - `timezone` (string): Configured time zone (America/Los_Angeles).
+  - `timezone_abbreviation` (string): Time zone abbreviation (e.g.: PDT).
+  - `utc_offset_seconds` (integer): Offset in seconds relative to UTC time (-25200).
+  - `daily.time` (array<string>): List of dates in ISO 8601 format (YYYY-MM-DD).
+  - `daily.temperature_2m_max` (array<float>): List of daily maximum temperatures (in Fahrenheit, °F).
+  - `daily.temperature_2m_min` (array<float>): List of daily minimum temperatures (in Fahrenheit, °F).
+  - `daily_units` (object): Defines the unit of the returned variables (°F for temperatures).
+
+## Loading and Visualizing the Data
+
+Practically any data visualization tool could be used for this step, but Grafana is used here for its easy integration with Athena. After creating AWS credentials for Grafana to access our data, creating data visualizations for the Open Meteo data was relatively straightforward to demonstrate the results of the ETL.
 
