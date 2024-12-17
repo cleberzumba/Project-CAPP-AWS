@@ -99,3 +99,6 @@ After quality check, the data is promoted to a Production S3 bucket. A new AWS G
   - Format: The data is saved in Parquet with partitioning.
 
 ![imagem](images/5-workflow-orchestration.jpg)
+
+![imagem](images/6-workflow-run-succeeded.jpg)
+
