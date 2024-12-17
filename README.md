@@ -59,3 +59,43 @@ Data extraction in a serverless environment is relatively straightforward. We ne
   - **Storage:** Kinesis Data Firehose delivers collected data directly to an S3 bucket in raw format. S3 storage serves as the initial layer of the pipeline to maintain a copy of the data prior to processing.
   - **Regulation:** Firehose enables us to collect data in situations where large amounts of data are constantly being called by Lambda and we wish to minimize computing costs to transfer the data. This particular tool is not necessary given the "on demand" nature of the project, but it is included for the sake of learning how to use it.
   - **Inspection:** Athena allows us to use SQL to examine the data being received and create a database structure to it.
+
+At a very high level, the process goes as follows.
+
+  1. An S3 bucket is created, dedicated to the data that is received.
+  2. A firehose is created, which points to the S3 bucket.
+  3. A process is written in Lambda using Python code to call the API and point the data to the firehose. The Python code used to call the API can be found here.
+  4. Athena is used to verify the data within the S3 bucket. (A database and an S3 bucket need to be created to query.)
+
+## Transformation
+
+Data transformation occurs in three main steps:
+
+1.	Cleaning the enviroment:
+
+    - A Python script  using the Boto3 SDK cleans up old data by deleting the files in the S3 bucket and removing the associated table in Amazon Athena.
+      - Objective: To ensure a clean enviroment for current processing.
+
+2.	Transformed Table Creation:
+         
+    - An AWS Glue Job runs a script that reads the raw data from S3, performs the following transformations, and saves the results:
+    - Temperature conversion: Fahrenheit to Celsius.
+      - Creation of partitioning column: yr_mo_partition (extracted from date/time).
+      - Optimized format: Data is saved in Parquet with Snappy compression in S3.
+      - Benefit: Parquet format reduces costs and improves query performance in Athena.
+
+3.	Data Quality Check:
+
+    - A Python script checks for null values in the Celsius temperature column (temp_C).
+      - If any null values are found, the process exits with an error.
+      - Purpose: Ensure data integrity and quality before promoting to production.
+
+## Data Promotion to Production
+
+After quality check, the data is promoted to a Production S3 bucket. A new AWS Glue Job is run, a Python script performing the following tasks:
+
+  - Versioning: The table name and path in S3 include a current timestamp, ensuring versioning of the data.
+  - Final Table Creation: A new table is created in Athena, pointing to the optimized data in S3.
+  - Format: The data is saved in Parquet with partitioning.
+
+![imagem](images/5-workflow-orchestration.jpg)
