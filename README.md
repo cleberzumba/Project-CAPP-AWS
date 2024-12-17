@@ -1,2 +1,1 @@
-# Project-FDEP-AWS
-Forecast Data Engineering Pipeline
+# Project FDEP-AWS: An Exploration of Learning ETL
