@@ -104,3 +104,16 @@ After the workflow, we end up with a similar data structure as before with anoth
 
 Practically any data visualization tool could be used for this step, but Grafana is used here for its easy integration with Athena. After creating AWS credentials for Grafana to access our data, creating data visualizations for the Open Meteo data was relatively straightforward to demonstrate the results of the ETL.
 
+
+
+## Conclusion
+
+This automated pipeline provides a robust solution for collecting, processing, and visualizing real-time weather data. The project follows a complete ETL structure with the following phases:
+
+  1.	**Data Collection** → Lambda + EventBridge.
+  2.	**Storage** → Kinesis Data Firehose + S3.
+  3.	**Transformation** → AWS Glue (Cleaning, Transformation, Validation).
+  4.	**Promotion** → Versioning in S3 with tables in Athena.
+  5.	**Query and Visualization** → Athena + Grafana.
+
+This flow ensures automation, quality and efficiency in the processing and analysis of meteorological data.
