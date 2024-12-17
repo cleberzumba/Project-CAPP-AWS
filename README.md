@@ -55,7 +55,7 @@ Data extraction in a serverless environment is relatively straightforward. We ne
 
 Data extraction in a serverless environment is relatively straightforward. We need the following components:
 
-  - **Storage:** AWS S3 is our primary service to store data, as it is both cost effective and plays well with the rest of the AWS tools.
-  - **Collection:** Lambda utilizes Python code to call data from the Open-Meteo API using Python. For the purposes of this project, we use Lambda to post requests every minute using an Event Bridge.
+  - **Collection:** An Lambda Function in Python code is triggered every minute by a schedule in Amazon EventBridge. The Lambda makes an HTTP request to the Open Meteo API, collecting weather information. The data is sent to Amazon Kinesis Data Firehose.
+  - **Storage:** Kinesis Data Firehose delivers collected data directly to an S3 bucket in raw format. S3 storage serves as the initial layer of the pipeline to maintain a copy of the data prior to processing.
   - **Regulation:** Firehose enables us to collect data in situations where large amounts of data are constantly being called by Lambda and we wish to minimize computing costs to transfer the data. This particular tool is not necessary given the "on demand" nature of the project, but it is included for the sake of learning how to use it.
   - **Inspection:** Athena allows us to use SQL to examine the data being received and create a database structure to it.
