@@ -24,4 +24,4 @@ The pipeline was developed using AWS managed services, ensuring a serverless and
 
 ## API
 
-This project uses data from the Open-Meteo [site][https://open-meteo.com/] API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for a specific location over a defined period.
+This project uses data from the Open-Meteo [site](https://open-meteo.com/) API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for a specific location over a defined period.
