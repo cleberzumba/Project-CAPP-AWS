@@ -19,3 +19,4 @@ The pipeline was developed using AWS managed services, ensuring a serverless and
   - Extract: Lambda, Firehose, S3, Python, Athena
   - Transform: S3, Athena, Glue
   - Load: S3, Athena, Glue, Grafana
+![imagem](images/Serverless-Data-Engineering-Project.jpeg)
