@@ -92,6 +92,14 @@ After quality check, the data is promoted to a Production S3 bucket. A new AWS G
 
 ![imagem](images/6-workflow-run-succeeded.jpg)
 
+The workflow allows us to achieve several goals:
+
+  - Automate the creation of a production table.
+  - Check the quality of the data.
+  - Create the table in parquet format, allowing efficient queries and cost savings.
+
+The workflow setup is a bit more complex compared to the previous ETL steps, requiring several Python scripts with triggers.
+
 After the workflow, we end up with a similar data structure as before with another enhancement.
 
   - `City` (string): Fixed value **Berlin** as text string.
