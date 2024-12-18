@@ -51,7 +51,7 @@ At a very high level, the process goes as follows.
 
   1. An S3 bucket is created, dedicated to the data that is received.
   2. A firehose is created, which points to the S3 bucket.
-  3. A process is written in Lambda using Python code to call the API and point the data to the firehose. The Python code used to call the API can be found here.
+  3. A process is written in Lambda using Python code to call the API and point the data to the firehose. The Python code used to call the API can be found [here](https://github.com/cleberzumba/Serverless-Data-Engineering-Project-AWS/tree/main/glue).
   4. Athena is used to verify the data within the S3 bucket. (A database and an S3 bucket need to be created to query.)
 
 ## Transformation
