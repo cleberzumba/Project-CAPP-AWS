@@ -34,8 +34,8 @@ The URL requested the following fields:
   - `longitude`: Longitude of the location.
   - `hourly`: Weather parameters in an hourly resolution - `Value` : temperature_2m - `Meaning` : Air temperature at 2 meters above the ground, measured in degrees Celsius (°C).
   - `timezone`: Time zone in which the data will be returned - `Value` : America/Los_Angeles (corresponds to the Pacific time zone).
-  - `start_date`: Start date of the forecast or historical range - `Value` : 2024-06-01 (June 1, 2024).
-  - `end_date`: End date of the forecast or historical range - `Value` : 2024-11-30 (November 30, 2024).
+  - `start_date`: Start date of the forecast or historical range.
+  - `end_date`: End date of the forecast or historical range.
 
 ## Extraction
 
