@@ -115,7 +115,7 @@ Practically any data visualization tool could be used for this step, but [Grafan
 
 ![imagem](images/dashboard-grafana.jpg)
 
-[Link to Grafana snapshot of the Open-Meteo API project](https://cleberz21.grafana.net/dashboard/snapshot/lsPt5B1utstFREDAwQkEzTzmC66L1BbF?orgId=1&from=2024-12-18T00:00:00.000Z&to=2024-12-18T23:00:00.000Z&timezone=browser)
+[Link to Grafana Snapshot of the Open-Meteo Project](https://cleberz21.grafana.net/dashboard/snapshot/lsPt5B1utstFREDAwQkEzTzmC66L1BbF?orgId=1&from=2024-12-18T00:00:00.000Z&to=2024-12-18T23:00:00.000Z&timezone=browser)
 
 ## Conclusion
 
