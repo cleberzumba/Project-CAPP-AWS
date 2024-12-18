@@ -30,9 +30,12 @@ This project uses data from the Open-Meteo [website](https://open-meteo.com/) AP
 
 The URL requested the following fields:
 
-  - `daily` = temperature_2m_max,temperature_2m_min
-      - `temperature_2m_max`: Daily maximum temperature.
-      - `temperature_2m_min`: Daily minimum temperature.
+  - `latitude` : Latitude of the location.
+  - `longitude`: Longitude of the location.
+  - `hourly`: Weather parameters in an hourly resolution.
+  - `timezone`: Time zone in which the data will be returned.
+  - `start_date`: Start date of the forecast or historical range.
+  - `end_date`: End date of the forecast or historical range.
 
 ## Extraction
 
