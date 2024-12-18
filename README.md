@@ -66,6 +66,7 @@ Data transformation occurs in three main steps:
 2.	Transformation:
          
     - An AWS Glue Job runs a script that reads the raw data from S3, performs the following transformations, and saves the results:
+      - Drops the table with the old data.
       - Crawl the data to automate a data catalog for the extracted data from S3.
       - Write, update, and check a production table in a workflow using the crawled data.
       - Creation of partitioning column: yr_mo_partition (extracted from date/time).
