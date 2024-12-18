@@ -1,5 +1,5 @@
 
-# Project FDEP-AWS: An Exploration of Learning ETL
+# Project CAPP-AWS: An Exploration of Learning ETL
 
 Author: [Cleber Zumba](https://github.com/cleberzumba)
 
