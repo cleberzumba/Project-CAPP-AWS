@@ -1,5 +1,5 @@
 
-# Project CAPP-AWS: An Exploration of Learning ETL
+# Serverless Data Engineering Project: An Exploration of Learning ETL
 
 Author: [Cleber Zumba](https://github.com/cleberzumba)
 
