@@ -3,7 +3,7 @@
 
 Author: [Cleber Zumba](https://github.com/cleberzumba)
 
-Last Updated: December 17, 2024
+Last Updated: December 18, 2024
 
 ## What is this project for?
 This project is a demonstration of how to utilize cloud services to create a data engineering project from scratch. The goals of creating this project include learning about various tools within Amazon Web Services (AWS), how they can be combined to create a compete workflow for extracting, transforming, and loading (ETL) data from online sources, and connect the transformed data to a tool for visualization. 
