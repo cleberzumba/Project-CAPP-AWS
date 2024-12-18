@@ -104,7 +104,7 @@ After the workflow, we end up with a similar data structure as before with anoth
 
 Practically any data visualization tool could be used for this step, but Grafana is used here for its easy integration with Athena. After creating AWS credentials for Grafana to access our data, creating data visualizations for the Open Meteo data was relatively straightforward to demonstrate the results of the ETL.
 
-
+![imagem](images/grafana.jpg)
 
 ## Conclusion
 
