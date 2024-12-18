@@ -30,12 +30,12 @@ This project uses data from the Open-Meteo [website](https://open-meteo.com/) AP
 
 The URL requested the following fields:
 
-  - `latitude` : Latitude of the location.
-  - `longitude`: Longitude of the location.
-  - `hourly`: Weather parameters in an hourly resolution.
-  - `timezone`: Time zone in which the data will be returned.
-  - `start_date`: Start date of the forecast or historical range.
-  - `end_date`: End date of the forecast or historical range.
+  - `latitude` : Latitude of the location - `Value` : 52.52 (corresponds to the latitude of Berlin, Germany).
+  - `longitude`: Longitude of the location - `Value` : 13.41 (corresponds to the longitude of Berlin, Germany).
+  - `hourly`: Weather parameters in an hourly resolution - `Value` : temperature_2m - `Meaning` : Air temperature at 2 meters above the ground, measured in degrees Celsius (°C).
+  - `timezone`: Time zone in which the data will be returned - `Value` : America/Los_Angeles (corresponds to the Pacific time zone).
+  - `start_date`: Start date of the forecast or historical range - `Value` : 2024-06-01 (June 1, 2024).
+  - `end_date`: End date of the forecast or historical range - `Value` : 2024-11-30 (November 30, 2024).
 
 ## Extraction
 
