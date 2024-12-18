@@ -115,6 +115,8 @@ Practically any data visualization tool could be used for this step, but [Grafan
 
 ![imagem](images/grafana.jpg)
 
+[Link to Project Grafana Snapshot](https://cleberz21.grafana.net/dashboard/snapshot/lsPt5B1utstFREDAwQkEzTzmC66L1BbF?orgId=1&from=2024-12-18T00:00:00.000Z&to=2024-12-18T23:00:00.000Z&timezone=browser)
+
 ## Conclusion
 
 This automated pipeline provides a robust solution for collecting, processing, and visualizing real-time weather data. The project follows a complete ETL structure with the following phases:
