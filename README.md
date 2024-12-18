@@ -102,8 +102,8 @@ The workflow setup is a bit more complex compared to the previous ETL steps, req
 
 After the workflow, we end up with a similar data structure as before with another enhancement.
 
-  - `City` (string): Fixed value **Berlin** as text string.
-  - `Country` (string): Fixed value **Germany** as text string.
+  - `City` (string): The city corresponding to the data collection.
+  - `Country` (string): The country corresponding to the city.
   - `Date` (string): Extracted date part from `datetime` field using SPLIT
   - `Time` (string): Time portion extracted from `datetime` field using SPLIT.
   - `Temperature` (double): Temperature in degrees Celsius in numerical format.
