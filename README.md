@@ -43,9 +43,8 @@ The URL requested the following fields:
 
 Data extraction in a serverless environment is relatively straightforward. We need the following components:
 
-  - **Collection:** An Lambda Function in Python code is triggered every minute by a schedule in Amazon EventBridge. The Lambda makes an HTTP request to the Open Meteo API, collecting weather information. The data is sent to Amazon Kinesis Data Firehose.
+  - **Collection:** An Lambda Function in Python code is triggered once a month by a schedule in Amazon EventBridge. The Lambda makes an HTTP request to the Open Meteo API, collecting weather information. The data is sent to Amazon Kinesis Data Firehose.
   - **Storage:** Kinesis Data Firehose delivers collected data directly to an S3 bucket in raw format. S3 storage serves as the initial layer of the pipeline to maintain a copy of the data prior to processing.
-  - **Regulation:** Firehose enables us to collect data in situations where large amounts of data are constantly being called by Lambda and we wish to minimize computing costs to transfer the data. This particular tool is not necessary given the "on demand" nature of the project, but it is included for the sake of learning how to use it.
   - **Inspection:** Athena allows us to use SQL to examine the data being received and create a database structure to it.
 
 At a very high level, the process goes as follows.
@@ -64,13 +63,16 @@ Data transformation occurs in three main steps:
     - A Python script  using the Boto3 SDK cleans up old data by deleting the files in the S3 bucket and removing the associated table in Amazon Athena.
       - Objective: To ensure a clean enviroment for current processing.
 
-2.	Transformed Table Creation:
+2.	Transformation:
          
     - An AWS Glue Job runs a script that reads the raw data from S3, performs the following transformations, and saves the results:
-    - Temperature conversion: Fahrenheit to Celsius.
+      - Crawl the data to automate a data catalog for the extracted data from S3.
+      - Write, update, and check a production table in a workflow using the crawled data.
       - Creation of partitioning column: yr_mo_partition (extracted from date/time).
       - Optimized format: Data is saved in Parquet with Snappy compression in S3.
       - Benefit: Parquet format reduces costs and improves query performance in Athena.
+
+      Creating the crawler with Glue is relatively straightforward: you choose the S3 bucket with the extracted data and need to assign the Athena database. This enables Glue to automatically create a table to be referenced by the workflow.
 
 3.	Data Quality Check:
 
