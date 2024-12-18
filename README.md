@@ -24,7 +24,7 @@ The pipeline was developed using AWS managed services, ensuring a serverless and
 
 ## API
 
-This project uses data from the Open-Meteo [website](https://open-meteo.com/) API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for the cities of Berlin, New York, Tokyo, Sydney and São Paulo for the period June to November 2024.
+This project uses data from the Open-Meteo [website](https://open-meteo.com/) API using the configured URL to collect weather information. The API returns daily maximum and minimum temperatures for the cities of Berlin, New York, Tokyo, Sydney and São Paulo for the last 6 months.
 
 ### Fields Queryed in the URL:
 
