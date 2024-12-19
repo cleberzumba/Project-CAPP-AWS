@@ -20,8 +20,15 @@ queryStart = client.start_query_execution(
     AS
 
     SELECT
-        'Berlin' as City
-        ,'Germany' as Country
+        City
+        ,CASE 
+            WHEN City = 'Berlin' THEN 'Germany'
+            WHEN City = 'New York' THEN 'USA'
+            WHEN City = 'Tokyo' THEN 'Japan'
+            WHEN City = 'Sydney' THEN 'Australia'
+            WHEN City = 'São Paulo' THEN 'Brazil'
+            ELSE 'Unknown'
+        END AS Country
         ,SPLIT(datetime, 'T')[1] AS Date 
         ,SPLIT(datetime, 'T')[2] AS Time
         ,Temperature  
