@@ -6,7 +6,7 @@ import datetime
 ## Firehose name need to be filled in.
 FIREHOSE_NAME = <<firehose name>>
 
-# Lista de cidades com latitude e longitude
+# List of cities with latitude and longitude
 CITIES = [
     {"city": "Berlin", "latitude": 52.52, "longitude": 13.41},
     {"city": "New York", "latitude": 40.71, "longitude": -74.01},
@@ -15,7 +15,7 @@ CITIES = [
     {"city": "São Paulo", "latitude": -23.55, "longitude": -46.63},
 ]
 
-# A função lambda_handler é invocada pela AWS Lambda. A invocação ocorre em resposta a o evento configurado, AWS EventBridge (CloudWatch Events)
+# The lambda_handler function is invoked by AWS Lambda. The invocation occurs in response to the configured event, AWS EventBridge (CloudWatch Events)
 def lambda_handler(event, context):
     http = urllib3.PoolManager()
 
@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     end_date = datetime.date.today()
     start_date = end_date - datetime.timedelta(days=180)
 
-    records = []  # Lista para armazenar os registros finais
+    records = []  # List to store final records
     fh = boto3.client('firehose')
     batch_size = 500
 
@@ -32,19 +32,19 @@ def lambda_handler(event, context):
         latitude = location['latitude']
         longitude = location['longitude']
 
-        # URL da API Open-Meteo para a cidade específica
+        # Open-Meteo API URL for specific city
         url = (f"https://api.open-meteo.com/v1/forecast?"
                f"latitude={latitude}&longitude={longitude}&hourly=temperature_2m"
                f"&timezone=UTC&start_date={start_date}&end_date={end_date}")
 
-        # Requisição HTTP
+        # HTT RequestP
         r = http.request("GET", url)
-        r_dict = json.loads(r.data.decode('utf-8')) # Converte a string JSON em um dicionário Python
+        r_dict = json.loads(r.data.decode('utf-8')) # Convert JSON string to Python dictionary
 
-        # Log de diagnóstico
-        print(f"Resposta da API para {city_name}:", r_dict)
+        # Diagnostic log
+        print(f"API response for {city_name}:", r_dict)
 
-        # Processamento dos dados
+        # Data processing
         time_list = r_dict.get('hourly', {}).get('time', [])
         temp_list = r_dict.get('hourly', {}).get('temperature_2m', [])
 
@@ -56,23 +56,23 @@ def lambda_handler(event, context):
                     'longitude': longitude,
                     'datetime': time,
                     'temperature': temp,
-                    'row_ts': str(datetime.datetime.now()) # Adiciona um timestamp (data e hora exata) da execução do script
+                    'row_ts': str(datetime.datetime.now()) # Adds a timestamp (exact date and time) of the script execution
                 }
                 record = {'Data': json.dumps(processed_dict) + '\n'}
                 records.append(record)
 
-                # Enviar em lotes de 500 registros
+                # Send in batches of 500 records
                 if len(records) >= batch_size:
                     send_to_firehose(fh, records)
-                    records = []  # Limpa o lote após envio
+                    records = []  # Clean the batch after sending
 
-    # Enviar os registros restantes
+    # Submit remaining records
     if records:
         send_to_firehose(fh, records)
 
     return {
         'statusCode': 200,
-        'body': json.dumps({'message': 'Dados de todas as cidades processados com sucesso'})
+        'body': json.dumps({'message': 'Data from all cities processed successfully'})
     }
 
 def send_to_firehose(client, records):
